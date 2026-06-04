@@ -1,0 +1,67 @@
+/* Globall css */
+.page-width{
+    width: 100%;
+    max-width: var(--layout-width);
+    margin: 0 auto;
+    padding: 0 50px;
+    height: 100%;
+}
+body{
+    scroll-behavior: smooth;
+}
+.footer-outer-wr{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: var(--font-primary--family) !important;
+}
+div, p, span, a, label{
+    font-family: var(--font-secondary--family) !important;
+}
+.nr-btn-primary {
+    padding: 10px 40px;
+    height: 45px;
+    background: transparent;
+    /* border: 1px solid #000; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 50px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    transition: 0.5s;
+    overflow: hidden;
+    border: 1px solid #fff;
+}
+.nr-btn-primary:hover{
+    border: 1px solid #fff;
+    color: #fff;
+}
+.nr-btn-primary:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    border-radius: 50px;
+    border: 1px solid #fff;
+    z-index: -1;
+    transition: 0.5s;
+}
+.nr-btn-primary:hover:before {
+    left: -101%;
+    transition: 0.5s;
+}
+header .header__menu a {
+    font-weight: 500;
+    font-size: 14px;
+}
