@@ -6,7 +6,7 @@ function Header () {
                 <div className="container">
                     <div className="nr-header-flx-wr flex justify-between items-center ">
                         <div className="header-logo">
-                            <h1 className="m-0 text-[30px] text-white font-bold"><a href="#">Animate</a></h1>
+                            <h1 className="m-0 text-[30px] text-white font-bold"><a href="#">Animate<span className="text-[var(--primary-color)] text-[50px]">.</span></a></h1>
                         </div>
                         <div className="header-menu">
                             <ul className="flex gap-[20px] align-center text-white uppercase text-[14px]">

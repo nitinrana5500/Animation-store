@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import "tailwindcss";
 
 :root{
   --primary-color: #9749f8;
-  --font-family: 'Poppins', sans-serif;
+  --font-family: "Anton", sans-serif;
 }
 .container {
   margin: 0 auto;
@@ -10,7 +11,9 @@
   width: 100%;
   max-width: 1500px;
 }
-
+.fixed-banner .heading{
+  font-family: var(--font-family);
+}
 .btn {
   padding: 10px 25px;
   border-radius: 50px;
@@ -28,7 +31,6 @@
   color: #fff;
   border: 1px solid var(--primary-color);
 }
-
 .banner-content {
   top: 50%;
   transform: translateY(-50%);

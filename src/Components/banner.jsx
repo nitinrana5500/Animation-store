@@ -35,6 +35,7 @@ function Banner() {
             ease: "none",
             duration: 0.3,
         })
+        
         .to(
           boyRef.current,
           {
@@ -66,8 +67,8 @@ function Banner() {
     );
     return (
         <section className="banner relative" ref={bannerRef}>
-            <div className="banner-media-wr relative">
-                <img className="banner-img main-img h-full w-full" src={MinImage} alt="banner" />
+            <div className="banner-media-wr relative h-full">
+                <img className="banner-img main-img h-full w-full object-cover" src={MinImage} alt="banner" />
                 <div className="banner-inner-media absolute h-max bottom-0 right-[15%] w-[400px]">
                     <img ref={moonRef} className="banner-img moon-img object-contain w-full top-[0px] left-[-80px] absolute" src={Moon} alt="Moon" />
                     <img ref={boyRef} className="banner-img boy-img object-contain w-[300px] relative" src={Boy} alt="Boy" />
