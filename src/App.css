@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root{
+  --primary-color: #9749f8;
+  --font-family: 'Poppins', sans-serif;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 50px;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.btn {
+  padding: 10px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: 1px solid var(--primary-color);
+}
+.btn-secondary {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid var(--primary-color);
+}
