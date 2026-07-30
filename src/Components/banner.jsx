@@ -74,7 +74,7 @@ function Banner() {
                     <img ref={boyRef} className="banner-img boy-img object-contain w-[300px] relative" src={Boy} alt="Boy" />
                 </div>
             </div>
-            <div ref={contentRef} className="banner-content w-[500px] flex flex-col h-full flex items-start justify-center">
+            <div ref={contentRef} className="banner-content w-[500px] flex flex-col">
                 <p className="banner-sb-hed text-[14px] uppercase text-[var(--primary-color)]">We Create</p>
                 <h2 className="banner-hed text-white text-[55px] leading-[1] font-bold pb-[20px]">Morden Animated Experiences <br/> That <span className="text-[var(--primary-color)]">Inspire</span></h2>
                 <p className="banner-desc text-[16px]">We craft stunning animations and intractive visuals that bring brands, stories, and ideas ro life.</p>
