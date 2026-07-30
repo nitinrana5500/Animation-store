@@ -56,6 +56,7 @@ function Banner() {
           },
           "<"
         );
+        ScrollTrigger.refresh()
         return () => {
             timeline.scrollTrigger?.kill();
             timeline.kill();
