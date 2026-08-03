@@ -21,7 +21,7 @@ function Banner() {
             end: "+=1800",
             scrub: 1,
             pin: true,
-            pinSpacing: true,
+            pinSpacing: false,
             markers: false,
             invalidateOnRefresh: true,
             },
@@ -55,7 +55,7 @@ function Banner() {
             duration: 0.5,
           },
           "<"
-        );
+        )
         ScrollTrigger.refresh()
         return () => {
             timeline.scrollTrigger?.kill();
@@ -70,12 +70,17 @@ function Banner() {
         <section className="banner relative" ref={bannerRef}>
             <div className="banner-media-wr relative h-full">
                 <img className="banner-img main-img h-full w-full object-cover" src={MinImage} alt="banner" />
+                <span className="banner-shooting-star"></span>
+                <span className="banner-shooting-star"></span>
+                <span className="banner-shooting-star"></span>
+                <span className="banner-shooting-star"></span>
+                <span className="banner-shooting-star"></span>
                 <div className="banner-inner-media absolute h-max bottom-0 right-[15%] w-[400px]">
                     <img ref={moonRef} className="banner-img moon-img object-contain w-full top-[0px] left-[-80px] absolute" src={Moon} alt="Moon" />
                     <img ref={boyRef} className="banner-img boy-img object-contain w-[300px] relative" src={Boy} alt="Boy" />
                 </div>
             </div>
-            <div ref={contentRef} className="banner-content w-[500px] flex flex-col">
+            <div ref={contentRef} className="banner-content w-[500px] flex flex-col top-[50%] translate-y-[-50%] absolute left-[50px]">
                 <p className="banner-sb-hed text-[14px] uppercase text-[var(--primary-color)]">We Create</p>
                 <h2 className="banner-hed text-white text-[55px] leading-[1] font-bold pb-[20px]">Morden Animated Experiences <br/> That <span className="text-[var(--primary-color)]">Inspire</span></h2>
                 <p className="banner-desc text-[16px]">We craft stunning animations and intractive visuals that bring brands, stories, and ideas ro life.</p>
