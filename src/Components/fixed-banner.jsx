@@ -13,27 +13,27 @@ function FixedBanner() {
     gsap.timeline({
       scrollTrigger: {
         trigger: fixedbanner.current,
-        start: "top end",
+        start: "top top",
         end: "+=1500",
-        scrub: 2,
+        scrub: 3,
         pin: true,
         pinSpacing: false,
         markers: false,
       },
     })
     .to(imageRef.current, {
-      y: -1000,
+      yPercent: -50,
       scale: 1,
       ease: "none",
     });
   },[]);
 
   return (
-    <section ref={fixedbanner} className="fixed-banner relative">
-      <div className="fixed-banner-img-wr">
+    <section ref={fixedbanner} className="fixed-banner relative overflow-hidden">
+      <div className="fixed-banner-img-wr overflow-hidden">
         <img
           ref={imageRef}
-          className="fixed-banner-img h-[200vh] w-full"
+          className="fixed-banner-img h-[200vh] w-full object-cover"
           src={Purple}
           alt="banner"
         />

@@ -31,7 +31,9 @@
   color: #fff;
   border: 1px solid var(--primary-color);
 }
-
+:root{
+  overflow-x: hidden;
+}
 /* Shooting stars animation */
 .banner-shooting-star{
   position: absolute;
