@@ -2,7 +2,7 @@ function Header () {
 
     return (
         <>
-            <div className="header py-[20px] absolute top-0 left-0 w-full z-10">
+            <header className="header py-[20px] absolute top-0 left-0 w-full z-10">
                 <div className="container">
                     <div className="nr-header-flx-wr flex justify-between items-center ">
                         <div className="header-logo">
@@ -22,7 +22,7 @@ function Header () {
                         </div>
                     </div>
                 </div>
-            </div>
+            </header>
         </>
     )
 }

@@ -15,14 +15,14 @@ function FixedBanner() {
         trigger: fixedbanner.current,
         start: "top top",
         end: "+=1500",
-        scrub: 3,
+        scrub: 1,
         pin: true,
         pinSpacing: false,
         markers: false,
       },
     })
     .to(imageRef.current, {
-      yPercent: -50,
+      yPercent: -100,
       scale: 1,
       ease: "none",
     });
@@ -39,7 +39,7 @@ function FixedBanner() {
         />
       </div>
 
-      <div className="fixed-banner-content-wr absolute top-[25%] left-[50%] translate-x-[-50%] translate-y-[-25%] w-full max-w-[550px]">
+      <div className="fixed-banner-content-wr absolute top-[20%] left-[50%] translate-x-[-50%] translate-y-[-20%] w-full max-w-[550px]">
         <h2 className="heading text-[60px] leading-[1.2] text-center text-white">
           Voyeur Verite is an independent, artist-founded creative studio
         </h2>

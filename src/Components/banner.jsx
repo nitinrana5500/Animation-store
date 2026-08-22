@@ -18,8 +18,8 @@ function Banner() {
             scrollTrigger: {
             trigger: bannerRef.current,
             start: "top top",
-            end: "+=1800",
-            scrub: 3,
+            end: "+=1000",
+            scrub: 1,
             pin: true,
             pinSpacing: true,
             markers: false,
@@ -82,7 +82,7 @@ function Banner() {
             </div>
             <div ref={contentRef} className="banner-content w-[500px] flex flex-col top-[50%] translate-y-[-50%] absolute left-[50px]">
                 <p className="banner-sb-hed text-[14px] uppercase text-[var(--primary-color)]">We Create</p>
-                <h2 className="banner-hed text-white text-[55px] leading-[1] font-bold pb-[20px]">Morden Animated Experiences <br/> That <span className="text-[var(--primary-color)]">Inspire</span></h2>
+                <h2 className="banner-hed text-white text-[55px] leading-[1] font-bold pb-[20px]">Morden Animated Experiences <br/> That <span className="text-[var(--primary-color)]">Inspire.</span></h2>
                 <p className="banner-desc text-[16px]">We craft stunning animations and intractive visuals that bring brands, stories, and ideas ro life.</p>
                 <div className="banner-btns-wr flex gap-[20px] items-center pt-[20px]"> 
                     <a href="#" className="btn btn-primary">View our Work</a>

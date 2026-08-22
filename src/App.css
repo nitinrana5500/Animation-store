@@ -34,6 +34,17 @@
 :root{
   overflow-x: hidden;
 }
+html,
+body {
+  overflow-x: hidden;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
 /* Shooting stars animation */
 .banner-shooting-star{
   position: absolute;
