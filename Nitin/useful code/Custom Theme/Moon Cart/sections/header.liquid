@@ -1,0 +1,277 @@
+<header class="{% if section.settings.bg-transparent %}bg-transparent{% endif %}">
+  <div class="page-width" style="background-color: {{ section.settings.bg-color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+    <div class="flex-wrapper">
+      <h2 class="header__title {{ section.settings.logo-position }}">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo |  img_url: 'master' }}" alt="logo" class="header__logo" style="height: {{ section.settings.logo-width }}px;" />
+          {% else %}
+          {{ shop.name | link_to: routes.root_url }}
+        {% endif %}
+      </h2>
+      <div class="header__menu {{ section.settings.logo-position }}" style="text-transform: {{ section.settings.text-style }};">
+        {% for link in section.settings.menu.links %}
+          {{ link.title | link_to: link.url }}
+        {% endfor %}
+      </div>
+      <div class="header__icons {{ section.settings.logo-position }}">
+        {% if shop.customer_accounts_enabled %}
+          <a href="" menu="{{ section.settings.customer_account_menu }}">
+            {% if section.settings.account != blank %}
+              <div style="height: {{ section.settings.ic-width }}px; width: {{ section.settings.ic-width }}px;">{{ section.settings.account }}</div>
+            {% else %}
+              {{ 'icon-account.svg' | inline_asset_content }}
+            {% endif %}
+          </a>
+        {% endif %}
+
+        <a href="{{ routes.cart_url }}">
+          {% if cart.item_count > 0 %}
+            <sup>{{ cart.item_count }}</sup>
+          {% endif %}
+          {% if section.settings.cart != blank %}
+            <div style="height: {{ section.settings.ic-width }}px; width: {{ section.settings.ic-width }}px;" src="{{ section.settings.cart |  img_url: 'master' }}">{{ section.settings.cart }}</div>
+          {% else %}
+            {{ 'icon-cart.svg' | inline_asset_content }}
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+{% style %}
+  header a {
+    position: relative;
+    text-decoration: none;
+    color: {{ section.settings.text-color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  header .flex-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    row-gap: 20px;
+  }
+  header .header__menu {
+    justify-content: center;
+  }
+  /* Logo left */
+  .header__icons {
+    justify-content: end;
+    grid-column: 3/4;
+  }
+  header .header__title {
+    display: flex;
+    justify-content: start;
+    grid-column: 1/2;
+  }
+  header .header__menu {
+    grid-column: 2/3;
+  }
+  /* Logo center */
+  header .header__title.logo-center {
+    grid-column: 2/3;
+    justify-content: center;
+    grid-row: 1/2;
+  }
+  header .header__menu.logo-center {
+    grid-column: 1/2;
+    justify-content: start;
+  }
+  /* Logo top left */
+  header .header__menu.top-left {
+    grid-row: 2/3;
+    grid-column: 1/2;
+    justify-content: start;
+  }
+  /* Logo top center */
+  header .header__menu.top-center {
+    grid-row: 2/3;
+    grid-column: 2/3;
+  }
+  header .header__title.top-center {
+    grid-column: 2/3;
+    justify-content: center;
+    grid-row: 1/2;
+  }
+  header a sup {
+    position: absolute;
+    left: 100%;
+    overflow: hidden;
+    max-width: var(--page-margin);
+  }
+  header svg {
+    width: 2rem;
+  }
+  header .header__menu,
+  header .header__icons {
+    display: flex;
+    gap: 1rem;
+  }
+  header{
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    top: 20px;
+  }
+  header .page-width {
+    border-radius: 50px;
+  }
+  header.bg-transparent .page-width {
+    border-radius: 0;
+    background: transparent !important;
+  }
+  header.bg-transparent {
+    top: 0;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "t:general.header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "select",
+      "id": "logo-position",
+      "label": "Logo Position",
+      "default": "logo-left",
+      "options": [
+        {
+          "value": "logo-left",
+          "label": "Middle Left"
+        },
+        {
+          "value": "logo-center",
+          "label": "Middle center"
+        },
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top center"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Content Color",
+      "default": "#000"
+    },
+    {
+      "type": "checkbox",
+      "id": "bg-transparent",
+      "label": "Background Transparent"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "unit": "px",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "unit": "px",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Menu Style"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:labels.menu"
+    },
+    {
+      "type": "link_list",
+      "id": "customer_account_menu",
+      "label": "t:labels.customer_account_menu",
+      "default": "customer-account-main-menu"
+    },
+    {
+      "type": "select",
+      "id": "text-style",
+      "label": "Text style",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Logo Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo-width",
+      "label": "Logo width",
+      "unit": "px",
+      "min": 0,
+      "max": 300,
+      "step": 10,
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Header Icons"
+    },
+    {
+      "type": "html",
+      "id": "account",
+      "label": "Account Icon"
+    },
+    {
+      "type": "html",
+      "id": "cart",
+      "label": "Cart Icon"
+    },
+    {
+      "type": "range",
+      "id": "ic-width",
+      "label": "Width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    }
+  ]
+}
+{% endschema %}

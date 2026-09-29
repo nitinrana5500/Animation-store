@@ -1,0 +1,280 @@
+<div class="nr-banner" style="{% if section.settings.bg-img != blank %} background-image:url({{ section.settings.bg-img | img_url: 'master' }}); {% endif %} height: calc({{ section.settings.size }});">
+  {% unless section.settings.bg-img %}
+    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endunless %}
+  <div class="nr-container page-width" style="padding-top:{{ section.settings.padding-top }}px; padding-bottom:{{ section.settings.padding-bottom }}px;">
+    <div class="nr-banner-content nr-{{ section.settings.content-align }} nr-{{ section.settings.alignment }} color-{{ section.settings.color_scheme }}"
+      style="    background: var(--background-color);
+    color: var(--text-color);"
+    >
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+          <h2 style="color: var(--color-foreground-heading);">{{ block.settings.hed }}</h2>
+          {% when 'description' %}
+          <div class="nr-banner-description" style="color: {{ section.settings.cntnt-cl }};">{{ block.settings.des }}</div>
+          {% when 'button' %}
+          <div class="nr-banner-btn-wr">
+            <a class="nr-btn-primary" href="{{ block.settings.btn-link }}">{{ block.settings.btn-primary }}</a>
+            <a class="nr-btn-secondary" href="{{ block.settings.btn-link2 }}">{{ block.settings.btn-secondary }}</a>
+          </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% style %}
+  .nr-banner{
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+  }
+  .nr-banner:before{
+    position: absolute;
+    content:"";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,{{ section.settings.opacity | divided_by: 100.0 }});
+  }
+  .nr-banner-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 10px;
+  }
+  .nr-banner .nr-container {
+    position: relative;
+  }
+  .nr-banner-content h2 {
+    font-size: 45px;
+  }
+  .nr-banner-content.nr-top-left {
+    top: 60px;
+    left: 50px;
+  }
+  .nr-banner-content.nr-top-right {
+    right: 50px;
+    top: 60px;
+  }
+  .nr-banner-content.nr-bottom-right {
+    right: 50px;
+    bottom: 60px;
+  }
+  .nr-banner-content.nr-bottom-left {
+    left: 50px;
+    bottom: 60px;
+  }
+  .nr-banner-content.nr-middle-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .nr-banner-content.nr-left {
+    text-align: left;
+    align-items: start;
+  }
+  .nr-banner-content.nr-center {
+    text-align: center;
+    align-items: center;
+  }
+  .nr-banner-content.nr-right {
+    text-align: right;
+    align-items: end;
+  }
+  
+{% endstyle %}
+{% schema %} 
+  {
+    "name": "Banner",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "Color Scheme",
+        "default": "scheme-1"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg-img",
+        "label": "Background Image"
+      },
+      {
+        "type": "range",
+        "id": "opacity",
+        "label": "Overlay Opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "default": 50
+      },
+      {
+        "type": "select",
+        "id": "size",
+        "label": "Banner Size",
+        "default": "600px",
+        "options": [
+          {
+            "value": "250px",
+            "label": "Small"
+          },
+          {
+            "value": "600px",
+            "label": "Medium"
+          },
+          {
+            "value": "700px",
+            "label": "Large"
+          },
+          {
+            "value": "100vh",
+            "label": "Full Screen"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Banner Content"
+      },
+      {
+        "type": "color",
+        "id": "cntnt-cl",
+        "label": "Content Color",
+        "default": "#000"
+      },
+      {
+        "type": "select",
+        "id": "content-align",
+        "label": "Content Position",
+        "options": [
+          {
+            "label": "Top Left",
+            "value": "top-left"
+          },
+          {
+            "label": "Top Right",
+            "value": "top-right"
+          },
+          {
+            "label": "Middle Center",
+            "value": "middle-center"
+          },
+          {
+            "label": "Bottom Left",
+            "value": "bottom-left"
+          },
+          {
+            "label": "Bottom Right",
+            "value": "bottom-right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "alignment",
+        "label": "Text Alignment",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Spacing"
+      },
+      {
+        "type": "range",
+        "id": "padding-top",
+        "label": "Padding top",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom",
+        "label": "Padding Bottom",
+        "unit": "px",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 20
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Heading",
+        "type": "heading",
+        "settings": [
+            {
+              "type": "text",
+              "id": "hed",
+              "label": "Heading",
+              "default": "Heading"
+            }
+        ]
+      },
+      {
+        "name": "Description",
+        "type": "description",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "des",
+            "label": "Heading",
+            "default": "<p>This is description</p>"
+          }
+        ]
+      },
+      {
+        "name": "Buttons",
+        "type": "button",
+        "settings": [
+          {
+            "type": "url",
+            "id": "btn-link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "btn-primary",
+            "label": "Button",
+            "default": "Shop now"
+          },
+          {
+            "type": "url",
+            "id": "btn-link2",
+            "label": "Link",
+          },
+          {
+            "type": "text",
+            "id": "btn-secondary",
+            "label": "Button Outline",
+            "default": "Shop now"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner"
+      }
+    ]
+  }
+{% endschema %}

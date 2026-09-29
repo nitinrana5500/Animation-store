@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    {% # Inlined CSS Variables %}
+    {% render 'css-variables' %}
+
+    {% comment %}
+      Font preloading:
+      1. Preconnect to font CDN for faster connection
+      2. Preload only the critical font variant (base weight)
+      3. Additional variants load on-demand via @font-face
+    {% endcomment %}
+    {% unless settings.type_primary_font.system? %}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
+      {% comment %} Preload the base font variant for initial page render {% endcomment %}
+      {{ settings.type_primary_font | font_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+    {% endunless %}
+
+    {% # Load and preload the critical CSS %}
+    {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'variable.liquid' | asset_url | stylesheet_tag: preload: true }}
+    {% # Social, title, etc. %}
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+  </head>
+  {% style %}
+    .color-scheme-1{
+      --background-color: {{ settings['main-background'] }};
+      --text-color: {{ settings.scheme_1_text }};
+    }
+    .color-scheme-2{
+      --background-color: {{ settings.scheme_2_background }};
+      --text-color: {{ settings.scheme_2_text }};
+    } 
+  {% endstyle %}
+  <body>
+    {% sections 'header-group' %}
+
+    {{ content_for_layout }}
+
+    {% sections 'footer-group' %}
+  </body>
+  {% comment %} For Header {% endcomment %}
+  <script>
+    (function () {
+      const header = document.querySelector('header');
+      const allSections = document.querySelectorAll('.shopify-section');
+      const firstSection = Array.from(allSections).find(s => !s.querySelector('header'));
+      if (!header || !firstSection) return;
+      const innerDiv = firstSection.querySelector('div:first-child');
+      if (!innerDiv) return;
+
+      function applyPadding() {
+        innerDiv.style.paddingTop = header.offsetHeight + 'px';
+      }
+
+      applyPadding();
+      const observer = new MutationObserver(applyPadding);
+      observer.observe(header, { attributes: true, attributeFilter: ['class'] });
+      window.addEventListener('resize', applyPadding);
+    })();
+</script>
+</html>
+

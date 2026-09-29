@@ -1,0 +1,65 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "hello-world",
+      "disabled": true,
+      "settings": {}
+    },
+    "banner_rWtrq3": {
+      "type": "Banner",
+      "blocks": {
+        "heading_CEGXVn": {
+          "type": "heading",
+          "settings": {
+            "hed": "Elevate Your Everyday Style"
+          }
+        },
+        "description_keUY6j": {
+          "type": "description",
+          "settings": {
+            "des": "<p>Timeless fashion pieces crafted to bring confidence, comfort, and elegance into your daily wardrobe.</p>"
+          }
+        },
+        "button_r9daUb": {
+          "type": "button",
+          "settings": {
+            "btn-link": "#",
+            "btn-primary": "Shop now",
+            "btn-link2": "",
+            "btn-secondary": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_CEGXVn",
+        "description_keUY6j",
+        "button_r9daUb"
+      ],
+      "name": "Banner",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "bg-img": "shopify://shop_images/home-collection-slider-1.jpg",
+        "opacity": 10,
+        "size": "600px",
+        "cntnt-cl": "#000000",
+        "content-align": "bottom-left",
+        "alignment": "left",
+        "padding-top": 20,
+        "padding-bottom": 20
+      }
+    }
+  },
+  "order": [
+    "main",
+    "banner_rWtrq3"
+  ]
+}
