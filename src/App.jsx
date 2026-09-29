@@ -20,6 +20,7 @@ function App() {
 
   return () => lenis.destroy();
 }, []);
+
   return (
     <>
       <Header/>
